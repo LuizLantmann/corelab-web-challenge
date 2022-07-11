@@ -21,8 +21,10 @@ const CreateVehicle = () => {
   console.log({ vehicles });
 
   return (
-    <div className={styles.Vehicles}>
+    <div className={styles.Container}>
+      <div className={styles.Box}>
         <Form />
+      </div>
     </div>
   );
 };
