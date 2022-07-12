@@ -1,30 +1,46 @@
+import { useState } from "react"
 import styles from "./Form.module.scss"
 
-const Form = () => {
+interface IFormState {
+  name: string;
+  brand: string;
+  color: string;
+  number: number;
+  plate: string;
+}
+
+const Form: React.FC = () => {
   const onSubmit = (event: React.FormEvent <HTMLFormElement>) => {
-    event.preventDefault()
-    const formData = new FormData(event.currentTarget)
-    console.log(formData)
-    console.log(event.target)
+      event.preventDefault()  
+      const [formState, setFormState] = useState<IFormState>({
+        name: "",
+        brand: "",
+        color: "",
+        number: 0,
+        plate: "",
+    })
+       
   }
   return (
   <form className={styles.Form} onSubmit={onSubmit}>
-    <label htmlFor="name">Nome:</label>
-    <input type="text" id="name" name="name"/>
+    <label className={styles.Label} htmlFor="name">Nome:</label>
+    <input className={styles.Input} type="text" autoFocus id="name" name="name"
+    value={formState.name}
+    onChange={(event)=>setFormState({...formState, name: event.currentTarget?.value || ""})}/>
 
-    <label htmlFor="brand">Marca:</label>
-    <input type="text" id="brand" name="brand"/>
+    <label className={styles.Label} htmlFor="brand">Marca:</label>
+    <input className={styles.Input} type="text" id="brand" name="brand"/>
 
-    <label htmlFor="color">Cor:</label>
-    <input type="text" id="color" name="color"/>
+    <label className={styles.Label} htmlFor="color">Cor:</label>
+    <input className={styles.Input} type="text" id="color" name="color"/>
 
-    <label htmlFor="year">Ano:</label>
-    <input type="number" id="year" name="year"/>   
+    <label className={styles.Label} htmlFor="year">Ano:</label>
+    <input className={styles.Input} type="number" id="year" name="year"/>   
 
-    <label htmlFor="plate">Placa:</label>
-    <input type="text" id="plate" name="plate"/>
+    <label className={styles.Label} htmlFor="plate">Placa:</label>
+    <input className={styles.Input} type="text" id="plate" name="plate"/>
 
-    <button type="submit">Enviar</button>
+    <button className={styles.Button} type="submit">SALVAR</button>
   </form>
   
   )
